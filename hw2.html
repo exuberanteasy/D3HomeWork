@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HW2</title>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<style>
+p {
+	border: 2px solid #3C3;
+	height: 40px;
+	width: 120px;
+	line-height: 40px;
+	text-align: center;
+}
+#aNum {
+	border: 2px solid green;
+}
+#svg {
+	background-color: oldlace;
+}
+</style>      
+</head>
+
+<body>
+<script>
+	function random(n,m) {      
+		var rNum =Math.ceil(Math.random()*(m-n)+n);    
+		return rNum; 
+	};
+	
+	function launch() {
+		var num = random(1911, 2017);
+		d3.select("body>p").text(num);
+		
+	};
+	function square(){
+		var num = d3.select("#aNum").property("value");
+		d3.select("#aNum").property("value", num*num);
+	};
+
+// *************************************
+	d3.select("#svg")
+		.append("circle")
+		.attr({
+			cx : 150,
+			cy : 120,
+			r  : 15
+		});
+		
+	d3.select("#svg")
+		.append("rect")
+		.attr({
+			x : 160,
+			y : 45,
+			width  : 5,
+			height : 78
+		});
+
+	d3.select("#svg")
+		.append("text")
+		.attr({
+			x : 135,
+			y : 200,
+			"font-size" : 40,
+			"font-family" : "arial"
+		}).text("A");
+	
+	for(i=0; i<5; i++) {
+		d3.select("#svg")
+			.append("line")
+			.attr({
+				x1 : 0,
+				y1 : 45 + i * 30,
+				x2 : 300,
+				y2 : 45 + i * 30,
+				stroke : 'black',
+				"stroke-width": '2'
+			});
+	} 
+	 
+	
+	for(var i=0; i<20; i=i+1) {
+		var p_value = Math.floor(Math.random()*280+20);
+		d3.select("#svg_1").append("rect")
+			.attr({
+				x: 10,
+				y: 10 + 15 * i,
+				width: 20 + p_value ,
+				height: 10,
+				fill: "red"
+			});
+			
+	d3.select("#svg_1")
+		.append("text")
+		.attr({
+			x : 35 + p_value,
+			y : 10 + 15 * i + 10,
+			"font-size" : 12,
+			"font-family" : "arial"
+		}).text(p_value);         
+	}
+</script>
+
+<p>我是曹鈞堯</p>
+
+<p></p>
+<input type="button" value="亂數" onclick="launch()">
+<hr>
+
+<input type="text" class="number" id="aNum">
+    
+<input type="button" value="計算平方!" onclick="square()"> 
+<hr>
+
+<svg width="300" height="200" id='svg'></svg>
+<hr>
+
+<svg width="400" height="280" id='svg_1'></svg>
+<hr>  
+
+</body>
+</html>
