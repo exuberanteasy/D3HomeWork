@@ -1,395 +1,191 @@
 <!DOCTYPE html>
 <html>
-    
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>GETTING STARTED WITH BRACKETS</title>
-        <meta name="description" content="An interactive getting started guide for Brackets.">
-        <link rel="stylesheet" href="main.css">
-        <script src="https://d3js.org/d3.v3.min.js"></script>
-    </head>
-    <body>
-
-
-    <svg3 width="600" height="500">
-
-    </svg3>
-
-    <script>
-        d3.json("invoice-taipei.json", function (dataSet) {
-            var svg3 = d3.select("svg3");
-            var count = 0;
-            for (var i = 0; i < dataSet.length; i++) {
-                if (dataSet[i].date === "2016/8/1" && dataSet[i].cid === "A" && +dataSet[i].amount > 1000000000) {
-                    d3.select("svg3")
-                            .append("rect")
-                            .attr({
-                                x: 200,
-                                y: 10 + 12 * count,
-                                width: dataSet[i].amount / 100000000,
-                                height: 10,
-                                fill: "red"
-                            });
-                    d3.select("svg3")
-                            .append("text")
-                            .attr({
-                                x: 0,
-                                y: 16 + 12 * count,
-                                "font-size": 10
-                            }).text(dataSet[i].industry);
-                    count++;
-                }
-
-            }
-        });
-    </script>
-
-
-    <hr>
-
-    <svg2 width="700" height="300">
-
-    </svg2>
-
-
-    <input type="button" value="Click" onclick="update()">
-
-    <input type="button" value="Remove" onclick="update_del()">
-
-
-    <script>
-        d3.json("invoice2016.json", function(dataSet){
-            var svg2 = d3.select("svg2");
-            var count = 0;
-            for(var i=0; i<dataSet.length; i++){
-                if(???){
-                    d3.select("svg2")
-                            .append("rect")
-                            .attr({
-                                        x: 100,
-                                        y: 10+12*count,
-                                        width: ???/100000000,
-                                    height: 10,
-                            fill: "red"
-                });
-                    d3.select("svg2")
-                            .append("text")
-                            .attr({
-                                x: 0,
-                                y: 16+12*count,
-                                "font-size": 5
-                            }).text(???);
-                    count=???;
-                }
-
-            }
-        });
-    </script>
-
-    <hr>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GETTING STARTED WITH BRACKETS</title>
+    <meta name="description" content="An interactive getting started guide for Brackets.">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+<br>
 
 <script>
-
     var arr = [85, 60, 99, 49, 77, 82];
 
-    bind(arr);
-    render();
+    var selection = d3.select('body').selectAll('div').data(arr);
+    selection.enter().append('div');
+    selection.exit().remove();
 
-    function svg(){
+    d3
+            .selectAll('div')
+            .text(function(data, i){
+                return i + ': ' + data;
+            })
+            .style('color', function(data){
+                return (data < 70) ? 'red' : 'black';
+            });
+</script>
+<br>
 
-    }
+<hr>
+<br>
+<br>
 
-    function bind(dateSet){
+<svg witdh="600" height="200"></svg>
 
-
-// 1 ----------------------------------------------
-        var selection =  d3.select("body")
-                .selectAll("div")
-                .data(dateSet);
-
-// 2 -----------------------------------------
-        selection.enter()
-                .append("div")
-
-// 3 ------------------------------------------
-        selection.exit().remove();
+<script>
+    d3.json('invoice-taipei.json', function(dataSet){
+        console.log(dataSet);
 
 
-    }
-    function render(){
-        d3.selectAll("div").text(function(d, i){
-            return i+":"+d;
-        }).style({
-            color: function(d){
-                if(d<70){
-                    return "red";
-                } else {
-                    return "black";
-                }
+        var body = d3.select("body")
+        var count=0;
+
+        for (var i=0; i<dataSet.length; i++){
+            if( dataSet[i].date=="2016/8/1" && dataSet[i].city=="臺北市" && dataSet[i].amount > 1000000000 ){
+
+                d3.select("svg")
+                        .append("text")
+                        .attr("x",0)
+                        .attr("y",20+12*count)
+                        .attr("font-size","12")
+                        .text(dataSet[i].industry)
+
+                d3.select("svg")
+                        .append("rect")
+                        .attr("x",200)
+                        .attr("y",10+12*count)
+                        .attr("width",dataSet[i].amount/100000000)
+                        .attr("height",10)
+                        .attr("fill","red")
+
+
+                count++;
+
             }
-        })
-    }
-
-
-
-
-
-
-    /*
-     selection.text(function(d){
-     return d;
-     });
-
-
-     // 2 ---------------------------
-
-
-     .text(function(d){
-     return d;
-     });
-
-
-     // 3 ---------------------------
-
-
-
-
-     //.append("div")
-
-     //.datum(arr[i])
-
-
-
-
-
-     console.log(d3.selectAll("div"));
-
-     */
-
-
-
-
+        }
+    });
 
 </script>
 
-
-
-
-
 <hr>
 
+<input type="button" value="Click" onclick="update()">
+<input type="button" value="Remove" onclick="remove()">
 
-
-
-
-        
-       
-        
 <script>
-    
     var arr = [85, 60, 99, 49, 77, 82];
-    var w = 900;
-    var h = 300;
-    var padding = 100;
-    
+    var w=900;
+    var h=300;
+    var padding= 100;
+
     svg();
     bind(arr);
     bind_t(arr);
     render();
     render_t();
-    
+
+
     function svg(){
-        d3.select("body").append("svg").attr({
-            width: w,
-            height: h
-        })
+        d3.select("body")
+                .append("svg")
+                .attr({
+                    id:"hw3",
+                    width: w,
+                    height: h
+                });
     }
-    
-    function bind(dateSet){
-        
-// 1 ----------------------------------------------        
-        var selection =  d3.select("svg")
-                        .selectAll("rect")
-                        .data(dateSet);
-        
-// 2 -----------------------------------------
-        selection.enter()
-        .append("rect")
-        
-// 3 ------------------------------------------    
-        selection.exit().remove();
-    
-        
-    }
-    
-    function bind_t(dateSet){
-        
-      
-        var selection =  d3.select("svg")
-                        .selectAll("text")
-                        .data(dateSet);
-        
-// 2 -----------------------------------------
-        selection.enter()
-        .append("text");
-        
-// 3 ------------------------------------------    
-        selection.exit().remove();
-    
-        
-    }
-    
-    
-    
-    
-    
-    
+
+    function bind(dataSet){
+
+        var selection=d3.select("svg#hw3")
+                .selectAll("rect")
+                .data(dataSet)
+        selection.enter().append("rect").attr({class:"hw3_rect"});
+        selection.exit().remove();}
+
+    //     ----
+
+    function bind_t(dataSet){
+
+        var selection=d3.select("svg#hw3")
+                .selectAll("text")
+                .data(dataSet)
+
+        selection.enter().append("text").attr({class:"hw3_text"});
+        selection.exit().remove();}
+
+    //     ----
+
     function render(){
-        d3.selectAll("rect").attr({
-            x: function(d,i) {
-                return padding + 42 * i;
+        d3.selectAll("rect.hw3_rect").attr({
+            x:function(d,i){
+                return padding+42*i;
             },
-            y: function(d){
+            y:function(d) {
                 return h-padding-d;
-            },                    
-            width: 40,
-            height: function(d){
+            },
+            width:40,
+            height:function(d){
                 return d;
             },
             fill: function(d){
                 if(d<70){
                     return "red";
-                } else {
+                }
+                else{
                     return "lightgreen";
                 }
             }
-            
         })
     }
-    
-    
+
     function render_t(){
-        d3.selectAll("text").attr({
-            x: function(d,i) {
-                return padding + 42 * i + 10;
+        d3.selectAll("text.hw3_text").attr({
+            x:function(d,i){
+                return padding+42*i+10;
             },
-            y: function(d){
+            y:function(d) {
                 return h-padding+20;
-            },                    
-            "font-size": 18
+            },
+            "font-size": 20
         }).text(function(d){
             return d;
         })
     }
-    
-    function update() {
-        var num = random(40, 100);
+
+    function update(){
+        var num=random(40,100);
         arr.push(num);
         bind(arr);
         bind_t(arr);
         render();
         render_t();
-        
-            
-        
+
+        console.log(new_arr);
     }
-    
-    
-    
-    function update_del() {
-        
+
+    function remove() {
+
         arr.shift();
         bind(arr);
         bind_t(arr);
         render();
         render_t();
-        
-            
-        
+
+
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
     function random(N,M){
         return Math.ceil(Math.random()*(M-N)+N);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-/*
-    function render(){
-        d3.selectAll("rect").text(function(d, i){
-            return i+":"+d;
-        }).style({
-            color: function(d){
-                if(d<70){
-                    return "red";
-                } else {
-                    return "black";
-                }
-            }
-        })
-    }
-
-*/  
-    
-    
-    
-
-    
-    /* 
-    selection.text(function(d){
-        return d;
-    });
-    
-    
-// 2 ---------------------------    
-    
-        
-        .text(function(d){
-            return d;
-        });
-    
-    
-// 3 ---------------------------
-    
-    
 
 
-//.append("div")
-
-//.datum(arr[i])
-
-
-
-
-
-console.log(d3.selectAll("div"));
-       
-*/
-       
-       
 </script>
-        
-        
+
+
+
 </body>
 </html>
-            
-            
-            
-
