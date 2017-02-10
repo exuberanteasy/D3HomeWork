@@ -27,9 +27,12 @@
                 return (data < 70) ? 'red' : 'black';
             });
 </script>
+
+<br>
 <br>
 
 <hr>
+
 <br>
 <br>
 
@@ -50,7 +53,7 @@
                         .append("text")
                         .attr("x",0)
                         .attr("y",20+12*count)
-                        .attr("font-size","12")
+                        .attr("font-size","18")
                         .text(dataSet[i].industry)
 
                 d3.select("svg")
@@ -106,7 +109,6 @@
         selection.enter().append("rect").attr({class:"hw3_rect"});
         selection.exit().remove();}
 
-    //     ----
 
     function bind_t(dataSet){
 
@@ -117,7 +119,6 @@
         selection.enter().append("text").attr({class:"hw3_text"});
         selection.exit().remove();}
 
-    //     ----
 
     function render(){
         d3.selectAll("rect.hw3_rect").attr({
