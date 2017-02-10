@@ -9,29 +9,8 @@
     <script src="https://d3js.org/d3.v3.min.js"></script>
 </head>
 <body>
-<br>
 
-<script>
-    var arr = [85, 60, 99, 49, 77, 82];
 
-    var selection = d3.select('body').selectAll('div').data(arr);
-    selection.enter().append('div');
-    selection.exit().remove();
-
-    d3
-            .selectAll('div')
-            .text(function(data, i){
-                return i + ': ' + data;
-            })
-            .style('color', function(data){
-                return (data < 70) ? 'red' : 'black';
-            });
-</script>
-
-<br>
-<br>
-
-<hr>
 
 <br>
 <br>
@@ -74,6 +53,36 @@
 </script>
 
 <hr>
+
+<br>
+
+<script>
+    var arr = [85, 60, 99, 49, 77, 82];
+
+    var selection = d3.select('body').selectAll('div').data(arr);
+    selection.enter().append('div');
+    selection.exit().remove();
+
+    d3
+            .selectAll('div')
+            .text(function(data, i){
+                return i + ': ' + data;
+            })
+            .style('color', function(data){
+                return (data < 70) ? 'red' : 'black';
+            });
+</script>
+
+
+
+
+
+<br>
+
+<hr>
+
+<br>
+
 
 <input type="button" value="Click" onclick="update()">
 <input type="button" value="Remove" onclick="remove()">
