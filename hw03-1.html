@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>GETTING STARTED WITH BRACKETS</title>
+        <meta name="description" content="An interactive getting started guide for Brackets.">
+        <link rel="stylesheet" href="main.css">
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+    </head>
+    <body>
+        
+       
+        
+<script>
+    
+    var arr = [85, 60, 99, 49, 77, 82];
+    
+    bind(arr);
+    render();
+    
+    function svg(){
+        
+    }
+    
+    function bind(dateSet){
+        
+        
+// 1 ----------------------------------------------        
+        var selection =  d3.select("body")
+        .selectAll("div")
+        .data(dateSet);
+        
+// 2 -----------------------------------------
+        selection.enter()
+        .append("div")
+        
+// 3 ------------------------------------------    
+        selection.exit().remove();
+    
+        
+    }
+    function render(){
+        d3.selectAll("div").text(function(d, i){
+            return i+":"+d;
+        }).style({
+            color: function(d){
+                if(d<70){
+                    return "red";
+                } else {
+                    return "black";
+                }
+            }
+        })
+    }
+    
+    
+    
+    
+
+    
+    /* 
+    selection.text(function(d){
+        return d;
+    });
+    
+    
+// 2 ---------------------------    
+    
+        
+        .text(function(d){
+            return d;
+        });
+    
+    
+// 3 ---------------------------
+    
+    
+
+
+//.append("div")
+
+//.datum(arr[i])
+
+
+
+
+
+console.log(d3.selectAll("div"));
+       
+*/
+       
+       
+</script>
+        
+        
+</body>
+</html>
+            
+            
+            
+

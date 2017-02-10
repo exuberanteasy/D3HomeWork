@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>GETTING STARTED WITH BRACKETS</title>
+        <meta name="description" content="An interactive getting started guide for Brackets.">
+        <link rel="stylesheet" href="main.css">
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+    </head>
+    <body>
+
+    <svg witdh="400" height="300"></svg>
+
+    <script>
+        d3.json('invoice-taipei.json', function(dataSet){
+            console.log(dataSet);
+
+
+            var body = d3.select("body")
+            var count=0;
+
+            for (var i=0; i<dataSet.length; i++){
+                if( dataSet[i].date=="2016/8/1" && dataSet[i].city=="臺北市" && dataSet[i].amount > 1000000000 ){
+
+                    d3.select("svg")
+                            .append("text")
+                            .attr("x",0)
+                            .attr("y",20+12*count)
+                            .attr("font-size","12")
+                            .text(dataSet[i].industry)
+
+                    d3.select("svg")
+                            .append("rect")
+                            .attr("x",200)
+                            .attr("y",10+12*count)
+                            .attr("width",dataSet[i].amount/100000000)
+                            .attr("height",10)
+                            .attr("fill","red")
+
+                    count++;
+
+                }
+            }
+        });
+
+    </script>
+        
+        
+</body>
+</html>
+            
+            
+            
+
