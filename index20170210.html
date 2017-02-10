@@ -12,16 +12,17 @@
     <body>
 
 
-    <svg1 width="600" height="500">
+    <svg3 width="600" height="500">
 
-    </svg1>
+    </svg3>
 
     <script>
         d3.json("invoice-taipei.json", function (dataSet) {
-            var svg1 = d3.select("svg1");
+            var svg3 = d3.select("svg3");
             var count = 0;
             for (var i = 0; i < dataSet.length; i++) {
-                if (dataSet[i].date === "2016/8/1" && dataSet[i].cid === "A" && +dataSet[i].amount > 1000000000) {                    d3.select("svg")
+                if (dataSet[i].date === "2016/8/1" && dataSet[i].cid === "A" && +dataSet[i].amount > 1000000000) {
+                    d3.select("svg3")
                             .append("rect")
                             .attr({
                                 x: 200,
@@ -30,7 +31,7 @@
                                 height: 10,
                                 fill: "red"
                             });
-                    d3.select("svg1")
+                    d3.select("svg3")
                             .append("text")
                             .attr({
                                 x: 0,
