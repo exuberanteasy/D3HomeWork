@@ -18,7 +18,7 @@
 
     <script>
         d3.json("invoice-taipei.json", function (dataSet) {
-            var svg = d3.select("svg1");
+            var svg1 = d3.select("svg1");
             var count = 0;
             for (var i = 0; i < dataSet.length; i++) {
                 if (dataSet[i].date === "2016/8/1" && dataSet[i].cid === "A" && +dataSet[i].amount > 1000000000) {                    d3.select("svg")
