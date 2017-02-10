@@ -26,34 +26,7 @@
 <input type="button" value="Remove" onclick="update_del()">
 
 
-<script>
-    d3.json("invoice2016.json", function(dataSet){
-        var svg = d3.select("svg");
-        var count = 0;
-        for(var i=0; i<dataSet.length; i++){
-            if(???){
-                d3.select("svg")
-                        .append("rect")
-                        .attr({
-                                    x: 100,
-                                    y: 10+12*count,
-                                    width: ???/100000000,
-                                height: 10,
-                        fill: "red"
-            });
-                d3.select("svg")
-                        .append("text")
-                        .attr({
-                            x: 0,
-                            y: 16+12*count,
-                            "font-size": 5
-                        }).text(???);
-                count=???;
-            }
 
-        }
-    });
-</script>
 
 <hr>
 
