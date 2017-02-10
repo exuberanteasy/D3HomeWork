@@ -36,7 +36,7 @@
 <br>
 <br>
 
-<svg witdh="600" height="200"></svg>
+<svg witdh="400" height="300"></svg>
 
 <script>
     d3.json('invoice-taipei.json', function(dataSet){
@@ -82,7 +82,7 @@
     var arr = [85, 60, 99, 49, 77, 82];
     var w=900;
     var h=300;
-    var padding= 100;
+    var padding= 120;
 
     svg();
     bind(arr);
@@ -151,7 +151,7 @@
             y:function(d) {
                 return h-padding+20;
             },
-            "font-size": 20
+            "font-size": 24
         }).text(function(d){
             return d;
         })
